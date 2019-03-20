@@ -28,16 +28,45 @@ public class Merge{
      merge(data,low,mid,high); //both sort
    }
 
-   public static void merge(int[] data,int low,int mid,int high){
+   public static void merge(int[]data, int low, int mid, int high){
+     int[] track = new int[(high-low)+1];
+     int trackInt = 0;
+     int right = mid + 1; //right ind
+     int left = low; //left ind
 
-	   }
+     while((left <= mid || right <= high) && trackInt<track.length){
+       if((right >= data.length || (right> high || data[left]<data[right])) && left<=mid){
+         left++;
+         trackInt++;
+       }
+
+       //put right in track ary
+       else{
+         track[trackInt] = data[right];
+         right++;
+         trackInt++;
+       }
+     }
+     //track vals-->original ary
+     for(int i = 0; i<track.length; i++){
+       data[low+i] = track[i];
+     }
+   }
+
+   public static void insertionSort(int[]data, int start, int end){
+    for(int i = 1; i < data.length; i++) {
+			int current = data[i];
+			int j;
+
+			for(j = i-1; j >= 0 && data[j] > current; j--) {
+				data[j+1] = data[j];
+			}
+
+		  data[j+1] = current;
+		  }
+    }
 
    public static void main(String[] args){
-      //testing insertion insertionSort
-      //int[] array = new int[]{2,3,1,0,3,4,1,8,7,9};
-      //insertionSort(array, 8, 6);
-      //System.out.println(Arrays.toString(array)); //should print {2,3,0,1,1,3,4,8,7,9}
-
       System.out.println("Size\t\tMax Value\tmerge /builtin ratio ");
       int[]MAX_LIST = {1000000000,500,10};
       for(int MAX : MAX_LIST){
@@ -72,5 +101,4 @@ public class Merge{
       }
     }
 
-   }
 }

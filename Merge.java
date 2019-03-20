@@ -3,7 +3,7 @@ import java.util.*;
 public class Merge{
   /*sort the array from least to greatest value. This is a wrapper function*/
   public static void mergesort(int[]data){
-  /*mergesort(data,lo,hi):
+  /*mergesort(data,low,hi):
   if lo >= hi :
     return
   mergesort left side
@@ -13,25 +13,24 @@ public class Merge{
     msHelp(data, 0, data.length-1);
   }
 
-   private static void msHelp(int[]data, int lo, int hi){
+   private static void msHelp(int[]data, int low, int high){
+     int mid = (low + high)/2;
 
+     if(high-low < 100){
+       insertionSort(data,low,high);
+     }
+
+     else{
+     msHelp(data,low,mid); //left sort
+     msHelp(data,mid+1,high); //right sort
+     }
+
+     merge(data,low,mid,high); //both sort
    }
 
-   public static void merge(int[] data,int lo,int midpoint,int hi){
+   public static void merge(int[] data,int low,int mid,int high){
 
-   }
-
-   public static void insertionSort(int[] ary, int start, int end){
-     for(int i = 1; i < data.length; i++) {
-			int current = data[i];
-			int j;
-			for(j = i-1; j >= 0 && data[j] > current; j--) {
-				data[j+1] = data[j];       //shift
-				}
-
-		data[j+1] = current;
-		}
-	 }
+	   }
 
    public static void main(String[] args){
       //testing insertion insertionSort

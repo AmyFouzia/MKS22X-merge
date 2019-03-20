@@ -10,9 +10,18 @@ public class Merge{
   mergesort right side
   merge
   */
+    msHelp(data, 0, data.length-1);
   }
 
    private static void msHelp(int[]data, int lo, int hi){
+
+   }
+
+   public static void merge(int[] data,int lo,int midpoint,int hi){
+
+   }
+
+   public static void insertionSort(int[] ary, int start, int end){
 
    }
 

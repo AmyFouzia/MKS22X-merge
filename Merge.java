@@ -22,8 +22,16 @@ public class Merge{
    }
 
    public static void insertionSort(int[] ary, int start, int end){
+     for(int i = 1; i < data.length; i++) {
+			int current = data[i];
+			int j;
+			for(j = i-1; j >= 0 && data[j] > current; j--) {
+				data[j+1] = data[j];       //shift
+				}
 
-   }
+		data[j+1] = current;
+		}
+	 }
 
    public static void main(String[] args){
       //testing insertion insertionSort

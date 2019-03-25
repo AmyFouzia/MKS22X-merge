@@ -17,15 +17,15 @@ public class Merge{
      int mid = (low + high)/2;
 
      if(high-low < 100){
-       insertionSort(data,low,high);
+       insertionSort(data, low, high);
      }
 
      else{
-     msHelp(data,low,mid); //left sort
-     msHelp(data,mid+1,high); //right sort
+     msHelp(data, low, mid); //left sort
+     msHelp(data, mid+1, high); //right sort
      }
 
-     merge(data,low,mid,high); //both sort
+     merge(data, low, mid, high); //both sort
    }
 
    public static void merge(int[]data, int low, int mid, int high){
@@ -34,37 +34,36 @@ public class Merge{
      int right = mid + 1; //right ind
      int left = low; //left ind
 
-     while((left <= mid || right <= high) && trackInt<track.length){
-       if((right >= data.length || (right> high || data[left]<data[right])) && left<=mid){
+     while((left <= mid || right <= high) && trackInt < track.length){
+       if((right >= data.length || (right> high || data[left] < data[right])) && left <= mid){
          left++;
          trackInt++;
        }
 
-       //put right in track ary
+       //put right in track data
        else{
          track[trackInt] = data[right];
          right++;
          trackInt++;
        }
      }
-     //track vals-->original ary
-     for(int i = 0; i<track.length; i++){
+     //track vals-->original data
+     for(int i = 0; i < track.length; i++){
        data[low+i] = track[i];
      }
    }
 
    public static void insertionSort(int[]data, int start, int end){
-    for(int i = 1; i < data.length; i++) {
-			int current = data[i];
-			int j;
-
-			for(j = i-1; j >= 0 && data[j] > current; j--) {
-				data[j+1] = data[j];
-			}
-
-		  data[j+1] = current;
-		  }
-    }
+     int len = end - start + 1;
+     for (int i = 1; i < len; i++){
+       int track = data[start + i];
+       int ob = 0;
+          for (ob = i; ob > 0 && track < data[start + ob - 1]; ob--){
+            data[start + ob] = data[start + ob - 1];
+          }
+       data[start + ob] = track;
+     }
+   }
 
    public static void main(String[] args){
       System.out.println("Size\t\tMax Value\tmerge /builtin ratio ");
